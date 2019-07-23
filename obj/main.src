@@ -13,6 +13,9 @@ _yPos:
 _squareSize:
 	DW	10
 	DB	0
+_speed:
+	DW	6
+	DB	0
 	SEGMENT BSS
 _key:
 	DS	1
@@ -424,11 +427,811 @@ _segments:
 	DB	0
 	DW	0
 	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
 _noSegments:
 	DW	1
 	DB	0
 _maxSegments:
-	DW	100
+	DW	300
 	DB	0
 	SEGMENT BSS
 _debugBuffer:
@@ -437,6 +1240,10 @@ _debugBuffer:
 _i:
 	DW	0
 	DB	0
+_hasLost:
+	DB	0
+_frames:
+	DL	0
 	SEGMENT BSS
 _currentDir:
 	DS	3
@@ -476,119 +1283,127 @@ _currentDir:
 ;   34	int xPos = 100;
 ;   35	int yPos = 100;
 ;   36	int squareSize = 10;
-;   37	kb_key_t key;
-;   38	
-;   39	int fruitX = 0;
-;   40	int fruitY = 0;
-;   41	
-;   42	int segments[2][100] = 0;
-;   43	unsigned int noSegments = 1;
-;   44	unsigned int maxSegments = 100;
-;   45	char debugBuffer[20];
-;   46	
-;   47	int i = 0; // for iterations
-;   48	
-;   49	enum Direction {
-;   50	    Up = 0,
-;   51	    Right = 1,
-;   52	    Down = 2,
-;   53	    Left = 3
-;   54	};
-;   55	
-;   56	enum Direction currentDir;
+;   37	int speed = 6;
+;   38	kb_key_t key;
+;   39	
+;   40	int fruitX = 0;
+;   41	int fruitY = 0;
+;   42	
+;   43	int segments[2][300] = 0;
+;   44	unsigned int noSegments = 1;
+;   45	unsigned int maxSegments = 300;
+;   46	char debugBuffer[20];
+;   47	
+;   48	int i = 0; // for iterations
+;   49	
+;   50	unsigned char hasLost = 0;
+;   51	
+;   52	unsigned long int frames = 0;
+;   53	
+;   54	enum Direction {
+;   55	    Up = 0,
+;   56	    Right = 1,
+;   57	    Down = 2,
+;   58	    Left = 3
+;   59	};
+;   60	
+;   61	enum Direction currentDir;
 	SEGMENT CODE
-;   57	
-;   58	void main(void) {
+;   62	
+;   63	void main(void) {
 _main:
-	LD	HL,-18
+	LD	HL,-39
 	CALL	__frameset
-;   59	    currentDir = Right;
+;   64	    currentDir = Right;
 	LD	BC,1
 	LD	(_currentDir),BC
-;   60	
-;   61	    
-;   62	    /* Fill in the body of the main function here */
-;   63	
-;   64	    gfx_Begin();
+;   65	
+;   66	    
+;   67	    /* Fill in the body of the main function here */
+;   68	
+;   69	    gfx_Begin();
 	CALL	_gfx_Begin
-;   65	    gfx_SetDrawBuffer();
+;   70	    gfx_SetDrawBuffer();
 	LD	BC,1
 	PUSH	BC
 	CALL	_gfx_SetDraw
 	POP	BC
-;   66	    gfx_SetColor(gfx_white);
+;   71	    gfx_SetColor(gfx_white);
 	LD	BC,255
 	PUSH	BC
 	CALL	_gfx_SetColor
 	POP	BC
-;   67	    gfx_SetTextFGColor(gfx_white);
+;   72	    gfx_SetTextFGColor(gfx_white);
 	LD	BC,255
 	PUSH	BC
 	CALL	_gfx_SetTextFGColor
 	POP	BC
-;   68	
-;   69	    generateFruit();
-	CALL	_generateFruit
-;   70	
-;   71	    
-;   72	    kb_Scan();
-	CALL	_kb_Scan
 ;   73	
-;   74	    do {
-L_47:
-;   75	        
-;   76	        gfx_FillScreen(gfx_red);
-	LD	BC,224
+;   74	    generateFruit();
+	CALL	_generateFruit
+;   75	
+;   76	
+;   77	
+;   78	
+;   79	    
+;   80	    kb_Scan();
+	CALL	_kb_Scan
+;   81	
+;   82	    do {
+L_55:
+;   83	        frames++;
+	LD	A,(_frames+3)
+	LD	E,A
+	LD	A,1
+	LD	HL,(_frames)
+;   84	        gfx_FillScreen(gfx_black);
+	LD	BC,0
 	PUSH	BC
+	CALL	__ladd_b
+	LD	(_frames),HL
+	LD	A,E
+	LD	(_frames+3),A
 	CALL	_gfx_FillScreen
 	POP	BC
-;   77	        // gfx_SetTextFGColor(gfx_white);
-;   78	
-;   79	        // sprintf(debugBuffer, "%d segments", noSegments);
-;   80	        // // debugBuffer[0] = 'A';
-;   81	        // // debugBuffer[1] = 'B';
-;   82	        // // debugBuffer[2] = 'C';
-;   83	        // /* Print some scaled font */
-;   84	        // gfx_SetTextScale(2, 2);
-;   85	        // //gfx_PrintStringXY("This text is SCALED!!", 15, 10);
-;   86	        // gfx_PrintStringXY("ahoy", (LCD_WIDTH - gfx_GetStringWidth("ahoy")) / 2, (LCD_HEIGHT - 8) / 2);
-;   87	        dbg_sprintf(dbgout, debugBuffer);
-;   88	        gfx_SetColor(gfx_white);
+;   85	        // gfx_SetTextFGColor(gfx_white);
+;   86	
+;   87	        // sprintf(debugBuffer, "%d segments", noSegments);
+;   88	        // // debugBuffer[0] = 'A';
+;   89	        // // debugBuffer[1] = 'B';
+;   90	        // // debugBuffer[2] = 'C';
+;   91	        // /* Print some scaled font */
+;   92	        // gfx_SetTextScale(2, 2);
+;   93	        // //gfx_PrintStringXY("This text is SCALED!!", 15, 10);
+;   94	        // gfx_PrintStringXY("ahoy", (LCD_WIDTH - gfx_GetStringWidth("ahoy")) / 2, (LCD_HEIGHT - 8) / 2);
+;   95	        dbg_sprintf(dbgout, debugBuffer);
+;   96	        gfx_SetColor(gfx_white);
 	LD	BC,255
 	PUSH	BC
 	CALL	_gfx_SetColor
 	POP	BC
-;   89	
-;   90	        // for (i = noSegments - 1; i >= 0; i--) {
-;   91	        //     gfx_SetColor(i);
-;   92	        //     gfx_FillRectangle(segments[0][i], segments[1][i], squareSize, squareSize);
-;   93	        // }
-;   94	
-;   95	        for (i = 0; i < noSegments; i++) {
+;   97	
+;   98	        // for (i = noSegments - 1; i >= 0; i--) {
+;   99	        //     gfx_SetColor(i);
+;  100	        //     gfx_FillRectangle(segments[0][i], segments[1][i], squareSize, squareSize);
+;  101	        // }
+;  102	
+;  103	        for (i = 0; i < noSegments; i++) {
 	LD	BC,0
 	LD	(_i),BC
-	JR	L_5
-L_3:
-;   96	            gfx_SetColor(i * 5);
-	LD	A,(_i)
-	LD	B,A
-	LD	C,5
-	MLT	BC
-	LD	B,0
-	PUSH	BC
-	CALL	_gfx_SetColor
-	POP	BC
-;   97	            gfx_FillRectangle(segments[0][i], segments[1][i], squareSize, squareSize);   
+	JR	L_6
+L_4:
+;  104	            //gfx_SetColor(i * 5);
+;  105	            // gfx_SetColor(gfx_white);
+;  106	            gfx_FillRectangle(segments[0][i], segments[1][i], squareSize, squareSize);   
 	LD	HL,(_i)
 	LD	BC,HL
 	ADD	HL,HL
 	ADD	HL,BC
 	LD	BC,HL
 	LD	HL,_segments
-	LD	DE,300
+	LD	DE,900
 	ADD	HL,DE
-	LD	DE,BC
-	ADD	HL,DE
+	ADD	HL,BC
 	LD	DE,(HL)
 	LD	HL,(_squareSize)
 	PUSH	HL
@@ -608,20 +1423,20 @@ L_3:
 	LD	BC,(_i)
 	INC	BC
 	LD	(_i),BC
-;   98	        }
-L_5:
+;  107	        }
+L_6:
 	LD	BC,(_noSegments)
 	LD	HL,(_i)
 	OR	A,A
 	SBC	HL,BC
-	JR	C,L_3
-;   99	
-;  100	        gfx_SetColor(gfx_yellow);
+	JR	C,L_4
+;  108	
+;  109	        gfx_SetColor(gfx_yellow);
 	LD	BC,231
 	PUSH	BC
 	CALL	_gfx_SetColor
 	POP	BC
-;  101	        gfx_FillCircle(fruitX, fruitY, squareSize / 2);
+;  110	        gfx_FillCircle(fruitX, fruitY, squareSize / 2);
 	LD	HL,(_squareSize)
 	LD	BC,2
 	CALL	__idivs
@@ -634,16 +1449,16 @@ L_5:
 	POP	BC
 	POP	BC
 	POP	BC
-;  102	
-;  103	        /* Update kb_Data */
-;  104	        kb_Scan();
+;  111	
+;  112	        /* Update kb_Data */
+;  113	        kb_Scan();
 	CALL	_kb_Scan
-;  105	
-;  106	        /* Load group 7 registers */
-;  107	        key = kb_Data[7];
+;  114	
+;  115	        /* Load group 7 registers */
+;  116	        key = kb_Data[7];
 	LD	A,(16056350)
-;  108	
-;  109	        switch (key) {
+;  117	
+;  118	        switch (key) {
 	UEXT	HL
 	LD	L,A
 	LD	(_key),A
@@ -651,188 +1466,243 @@ L_5:
 L__1:
 	DW	4
 	DB	1
-	DW24	L_7	
+	DW24	L_8	
 
 	DB	2
-	DW24	L_16	
+	DW24	L_17	
 
 	DB	4
-	DW24	L_10	
+	DW24	L_11	
 
 	DB	8
-	DW24	L_13	
+	DW24	L_14	
 
-	DW24	L_25	
+	DW24	L_26	
 
-;  110	            case kb_Down:
-L_7:
-;  111	                if (currentDir != Up) currentDir = Down;
+;  119	            case kb_Down:
+L_8:
+;  120	                if (currentDir != Up) currentDir = Down;
 	LD	HL,(_currentDir)
 	CALL	__icmpzero
-	JR	Z,L_25
+	JR	Z,L_26
 	LD	BC,2
-	LD	(_currentDir),BC
-;  112	                break;
-	JR	L_25
-;  113	            case kb_Right:
-L_10:
-;  114	                if (currentDir != Left) currentDir = Right;
-	LD	BC,3
-	LD	HL,(_currentDir)
-	OR	A,A
-	SBC	HL,BC
-	JR	Z,L_25
-	LD	BC,1
-	LD	(_currentDir),BC
-;  115	                break;
-	JR	L_25
-;  116	            case kb_Up:
-L_13:
-;  117	                if (currentDir != Down) currentDir = Up;
-	LD	BC,2
-	LD	HL,(_currentDir)
-	OR	A,A
-	SBC	HL,BC
-	JR	Z,L_25
-	LD	BC,0
-	LD	(_currentDir),BC
-;  118	                break;
-	JR	L_25
-;  119	            case kb_Left:
-L_16:
-;  120	                if (currentDir != Right) currentDir = Left;
-	LD	BC,1
-	LD	HL,(_currentDir)
-	OR	A,A
-	SBC	HL,BC
-	JR	Z,L_25
-	LD	BC,3
 	LD	(_currentDir),BC
 ;  121	                break;
-;  122	            default:
-;  123	                break;
-;  124	        }
-L_25:
-;  125	
-;  126	        switch ((int)currentDir)
+	JR	L_26
+;  122	            case kb_Right:
+L_11:
+;  123	                if (currentDir != Left) currentDir = Right;
+	LD	BC,3
+	LD	HL,(_currentDir)
+	OR	A,A
+	SBC	HL,BC
+	JR	Z,L_26
+	LD	BC,1
+	LD	(_currentDir),BC
+;  124	                break;
+	JR	L_26
+;  125	            case kb_Up:
+L_14:
+;  126	                if (currentDir != Down) currentDir = Up;
+	LD	BC,2
+	LD	HL,(_currentDir)
+	OR	A,A
+	SBC	HL,BC
+	JR	Z,L_26
+	LD	BC,0
+	LD	(_currentDir),BC
+;  127	                break;
+	JR	L_26
+;  128	            case kb_Left:
+L_17:
+;  129	                if (currentDir != Right) currentDir = Left;
+	LD	BC,1
+	LD	HL,(_currentDir)
+	OR	A,A
+	SBC	HL,BC
+	JR	Z,L_26
+	LD	BC,3
+	LD	(_currentDir),BC
+;  130	                break;
+;  131	            default:
+;  132	                break;
+;  133	        }
+L_26:
+;  134	
+;  135	        switch ((int)currentDir)
 	LD	HL,(_currentDir)
 	CALL	__seqcase
 L__6:
 	DW	4
 	DW	0
 	DB	0
-	DW24	L_20	
-
 	DW24	L_21	
 
 	DW24	L_22	
 
 	DW24	L_23	
 
-	DW24	L_29	
+	DW24	L_24	
 
-;  127	        {
-;  128	        case 0: // up
-L_20:
-;  129	            yPos-= 2;
-	LD	IY,(_yPos)
-	LEA	BC,IY+-2
-	LD	(_yPos),BC
-;  130	            break;
-	JR	L_29
-;  131	        case 1: // Right
+	DW24	L_30	
+
+;  136	        {
+;  137	        case 0: // up
 L_21:
-;  132	            xPos+= 2;
-	LD	IY,(_xPos)
-	LEA	BC,IY+2
-	LD	(_xPos),BC
-;  133	            break;
-	JR	L_29
-;  134	        case 2: // Down
-L_22:
-;  135	            yPos+= 2;
-	LD	IY,(_yPos)
-	LEA	BC,IY+2
-	LD	(_yPos),BC
-;  136	            break;
-	JR	L_29
-;  137	        case 3: // Left
-L_23:
-;  138	            xPos-= 2;
-	LD	IY,(_xPos)
-	LEA	BC,IY+-2
-	LD	(_xPos),BC
+;  138	            yPos-= speed;
+	LD	HL,(_yPos)
+	LD	BC,(_speed)
+	OR	A,A
+	SBC	HL,BC
+	LD	(_yPos),HL
 ;  139	            break;
-;  140	        default:
-;  141	            break;
-;  142	        }
-L_29:
-;  143	
-;  144	        if (yPos > SCREEN_MAX_Y) {
+	JR	L_30
+;  140	        case 1: // Right
+L_22:
+;  141	            xPos+= speed;
+	LD	BC,(_speed)
+	LD	HL,(_xPos)
+	ADD	HL,BC
+	LD	(_xPos),HL
+;  142	            break;
+	JR	L_30
+;  143	        case 2: // Down
+L_23:
+;  144	            yPos+= speed;
+	LD	BC,(_speed)
+	LD	HL,(_yPos)
+	ADD	HL,BC
+	LD	(_yPos),HL
+;  145	            break;
+	JR	L_30
+;  146	        case 3: // Left
+L_24:
+;  147	            xPos-= speed;
+	LD	HL,(_xPos)
+	LD	BC,(_speed)
+	OR	A,A
+	SBC	HL,BC
+	LD	(_xPos),HL
+;  148	            break;
+;  149	        default:
+;  150	            break;
+;  151	        }
+L_30:
+;  152	
+;  153	        if (yPos > SCREEN_MAX_Y) {
 	LD	BC,(_yPos)
 	LD	HL,240
 	OR	A,A
 	SBC	HL,BC
 	CALL	__setflag
-	JP	P,L_28
-;  145	            yPos = 0;
+	JP	P,L_29
+;  154	            yPos = 0;
 	LD	BC,0
 	LD	(_yPos),BC
-;  146	        } else if (yPos < 0) {
-	JR	L_33
-L_28:
+;  155	        } else if (yPos < 0) {
+	JR	L_34
+L_29:
 	LD	HL,(_yPos)
 	CALL	__icmpzero
 	CALL	__setflag
-	JP	P,L_33
-;  147	            yPos = SCREEN_MAX_Y;
+	JP	P,L_34
+;  156	            yPos = SCREEN_MAX_Y;
 	LD	BC,240
 	LD	(_yPos),BC
-;  148	        }
-L_33:
-;  149	
-;  150	        if (xPos > SCREEN_MAX_X) {
+;  157	        }
+L_34:
+;  158	
+;  159	        if (xPos > SCREEN_MAX_X) {
 	LD	BC,(_xPos)
 	LD	HL,320
 	OR	A,A
 	SBC	HL,BC
 	CALL	__setflag
-	JP	P,L_32
-;  151	            xPos = 0;
+	JP	P,L_33
+;  160	            xPos = 0;
 	LD	BC,0
 	LD	(_xPos),BC
-;  152	        } else if (xPos < 0) {
-	JR	L_34
-L_32:
+;  161	        } else if (xPos < 0) {
+	JR	L_35
+L_33:
 	LD	HL,(_xPos)
 	CALL	__icmpzero
 	CALL	__setflag
-	JP	P,L_34
-;  153	            xPos = SCREEN_MAX_X;
+	JP	P,L_35
+;  162	            xPos = SCREEN_MAX_X;
 	LD	BC,320
 	LD	(_xPos),BC
-;  154	        }
-L_34:
-;  155	        shiftSegments();
+;  163	        }
+L_35:
+;  164	
+;  165	        shiftSegments();
 	CALL	_shiftSegments
-;  156	        segments[0][0] = xPos;
+;  166	        segments[0][0] = xPos;
 	LD	BC,(_xPos)
-;  157	        segments[1][0] = yPos;
-	LD	DE,300
-	LD	HL,_segments
-	ADD	HL,DE
 	LD	(_segments),BC
-	LD	(IX+-6),HL
-	LD	HL,_segments
-	LD	BC,300
-	ADD	HL,BC
-	LD	(IX+-3),HL
+;  167	        segments[1][0] = yPos;
+	LD	BC,900
 	LD	HL,_segments
 	ADD	HL,BC
 	LD	BC,(_yPos)
 	LD	(HL),BC
-;  158	
-;  159	        if (abs(segments[0][0] - fruitX) < 10 && abs(segments[1][0] - fruitY) < 10) {
+;  168	
+;  169	        for (i = 1; i < noSegments; i++) {
+	LD	BC,1
+	LD	(_i),BC
+	JR	L_41
+L_39:
+;  170	            if (segments[0][0] == segments[0][i] && segments[1][0] == segments[1][i]) {
+	LD	BC,_segments
+	LD	(IX+-15),BC
+	LD	HL,(_i)
+	LD	BC,HL
+	ADD	HL,HL
+	ADD	HL,BC
+	LD	(IX+-12),HL
+	LD	BC,(IX+-15)
+	ADD	HL,BC
+	LD	IY,(IX+-15)
+	LD	BC,(IY)
+	LD	HL,(HL)
+	OR	A,A
+	SBC	HL,BC
+	JR	NZ,L_40
+	LD	BC,900
+	LD	HL,_segments
+	ADD	HL,BC
+	LD	(IX+-18),HL
+	LD	BC,(IX+-12)
+	LD	HL,(IX+-18)
+	ADD	HL,BC
+	LD	IY,(IX+-18)
+	LD	BC,(IY)
+	LD	HL,(HL)
+	OR	A,A
+	SBC	HL,BC
+	JR	NZ,L_40
+;  171	                hasLost = 1;
+	LD	A,1
+	LD	(_hasLost),A
+;  172	                break;
+	JR	L_52
+;  173	            }
+;  174	        }
+L_40:
+	LD	BC,(_i)
+	INC	BC
+	LD	(_i),BC
+L_41:
+	LD	BC,(_noSegments)
+	LD	HL,(_i)
+	OR	A,A
+	SBC	HL,BC
+	JR	C,L_39
+L_52:
+;  175	
+;  176	        if (abs(segments[0][0] - fruitX) < 10 && abs(segments[1][0] - fruitY) < 10) {
+	LD	BC,_segments
+	LD	(IX+-9),BC
 	LD	HL,(_segments)
 	LD	BC,(_fruitX)
 	OR	A,A
@@ -844,13 +1714,14 @@ L_34:
 	OR	A,A
 	SBC	HL,BC
 	CALL	__setflag
-	JP	P,L_46
-	LD	BC,300
+	JP	P,L_53
+	LD	BC,900
 	LD	HL,_segments
 	ADD	HL,BC
+	LD	(IX+-6),HL
 	LD	HL,(HL)
-	OR	A,A
 	LD	BC,(_fruitY)
+	OR	A,A
 	SBC	HL,BC
 	PUSH	HL
 	CALL	_abs
@@ -859,158 +1730,191 @@ L_34:
 	OR	A,A
 	SBC	HL,BC
 	CALL	__setflag
-	JP	P,L_46
-;  160	            noSegments++;
-	LD	BC,(_noSegments)
-	INC	BC
+	JP	P,L_53
+;  177	            // speed++;
+;  178	            noSegments += 3;
+	LD	IY,(_noSegments)
+	LEA	BC,IY+3
 	LD	(_noSegments),BC
-;  161	            if (noSegments >= maxSegments) {
+;  179	            if (noSegments >= maxSegments) {
 	LD	BC,(_maxSegments)
 	LD	HL,(_noSegments)
 	OR	A,A
 	SBC	HL,BC
-	JR	NC,L_46
-;  162	
-;  163	            } else {
-;  164	                shiftSegments();
+	JR	NC,L_53
+;  180	
+;  181	            } else {
+;  182	                shiftSegments();
 	CALL	_shiftSegments
-;  165	
-;  166	                switch ((int)currentDir)
+;  183	                segments[0][noSegments - 1] = segments[0][noSegments - 2];
+	LD	IY,(_noSegments)
+	LEA	BC,IY+-2
+	LD	HL,3
+	CALL	__imulu
+	LD	BC,(IX+-9)
+	ADD	HL,BC
+	LD	(IX+-21),HL
+	LD	IY,(_noSegments)
+	LEA	BC,IY+-1
+	LD	(IX+-3),BC
+	LD	HL,(IX+-21)
+	LD	DE,(HL)
+	LD	HL,3
+	CALL	__imulu
+	LD	BC,HL
+	LD	(IX+-36),BC	; spill
+	LD	(IX+-39),BC	; spill
+	LD	BC,(IX+-36)	; unspill
+	LD	HL,(IX+-9)
+	LD	(IX+-36),BC	; spill
+	LD	BC,(IX+-39)	; unspill
+	ADD	HL,BC
+	LD	BC,(IX+-36)	; unspill
+	LD	(HL),DE
+;  184	                segments[1][noSegments - 1] = segments[0][noSegments - 2];
+	LD	HL,(IX+-21)
+	LD	DE,(HL)
+	LD	HL,(IX+-6)
+	ADD	HL,BC
+	LD	(HL),DE
+;  185	                switch ((int)currentDir)
 	LD	HL,(_currentDir)
 	CALL	__seqcase
-L__14:
+L__17:
 	DW	4
 	DW	0
 	DB	0
-	DW24	L_37	
+	DW24	L_43	
 
-	DW24	L_38	
+	DW24	L_44	
 
-	DW24	L_39	
+	DW24	L_45	
 
-	DW24	L_40	
+	DW24	L_46	
 
-	DW24	L_42	
+	DW24	L_48	
 
-;  167	                {
-;  168	                case 0: // up
-L_37:
-;  169	                    yPos -= squareSize * 5;
-	LD	HL,(_squareSize)
-	LD	A,5
-	CALL	__imul_b
-	LD	BC,HL
-	LD	HL,(_yPos)
-	LD	DE,BC
-	OR	A,A
-	SBC	HL,DE
-	LD	(_yPos),HL
-;  170	                    segments[1][0] -= squareSize * 5;
-	LD	HL,_segments
-	LD	DE,300
-	ADD	HL,DE
-	LD	(IX+-9),HL
-	LD	HL,(HL)
-	LD	IY,(IX+-9)
-	OR	A,A
-	SBC	HL,BC
-	LD	(IY),HL
-;  171	                    // yPos--;
-;  172	                    break;
-	JR	L_42
-;  173	                case 1: // Right
-L_38:
-;  174	                    xPos += squareSize * 5;
-	LD	HL,(_squareSize)
-	LD	A,5
-	CALL	__imul_b
-	LD	BC,HL
-	LD	DE,BC
-	LD	HL,(_xPos)
-	ADD	HL,DE
-	LD	(_xPos),HL
-;  175	                    segments[0][0] += squareSize * 5;
-	LD	DE,_segments
-	LD	(IX+-12),DE
-	LD	HL,(IX+-12)
-	LD	HL,(HL)
+;  186	                {
+;  187	                case 0: // up
+L_43:
+;  188	                    segments[1][noSegments - 1] += squareSize * 3;
+	LD	HL,3
+	LD	BC,(IX+-3)
+	CALL	__imulu
+	LD	BC,(IX+-6)
 	ADD	HL,BC
-	LD	IY,(IX+-12)
-	LD	(IY),HL
-;  176	                    // xPos++;
-;  177	                    break;
-	JR	L_42
-;  178	                case 2: // Down
-L_39:
-;  179	                    yPos += squareSize * 5;
+	LD	(IX+-24),HL
+	LD	BC,(HL)
 	LD	HL,(_squareSize)
-	LD	A,5
-	CALL	__imul_b
-	LD	BC,HL
-	LD	DE,BC
-	LD	HL,(_yPos)
+	LD	DE,HL
+	LD	IY,(IX+-24)
+	ADD	HL,HL
 	ADD	HL,DE
-	LD	(_yPos),HL
-;  180	                    segments[1][0] += squareSize * 5;
-	LD	HL,_segments
-	LD	DE,300
-	ADD	HL,DE
-	LD	(IX+-15),HL
-	LD	HL,(HL)
 	ADD	HL,BC
-	LD	IY,(IX+-15)
 	LD	(IY),HL
-;  181	                    // yPos++;
-;  182	                    break;
-	JR	L_42
-;  183	                case 3: // Left
-L_40:
-;  184	                    xPos -= squareSize * 5;
+;  189	                    // yPos--;
+;  190	                    break;
+	JR	L_48
+;  191	                case 1: // Right
+L_44:
+;  192	                    segments[0][noSegments - 1] -= squareSize * 3;
+	LD	HL,3
+	LD	BC,(IX+-3)
+	CALL	__imulu
+	LD	BC,(IX+-9)
+	ADD	HL,BC
+	LD	(IX+-27),HL
 	LD	HL,(_squareSize)
-	LD	A,5
-	CALL	__imul_b
 	LD	BC,HL
-	LD	HL,(_xPos)
-	OR	A,A
-	SBC	HL,BC
-	LD	(_xPos),HL
-;  185	                    segments[0][0] -= squareSize * 5;
-	LD	DE,_segments
-	LD	(IX+-18),DE
-	LD	HL,(IX+-18)
+	ADD	HL,HL
+	ADD	HL,BC
+	LD	BC,HL
+	LD	HL,(IX+-27)
 	LD	HL,(HL)
+	LD	IY,(IX+-27)
 	OR	A,A
 	SBC	HL,BC
-	LD	IY,(IX+-18)
 	LD	(IY),HL
-;  186	                    // xPos--;
-;  187	                    break;
-;  188	                default:
-;  189	                    break;
-;  190	                }
-L_42:
-;  191	                generateFruit();
-	CALL	_generateFruit
-;  192	            }
-;  193	        }
+;  193	                    // xPos++;
+;  194	                    break;
+	JR	L_48
+;  195	                case 2: // Down
+L_45:
+;  196	                    segments[1][noSegments - 1] -= squareSize * 3;
+	LD	HL,3
+	LD	BC,(IX+-3)
+	CALL	__imulu
+	LD	BC,(IX+-6)
+	ADD	HL,BC
+	LD	(IX+-30),HL
+	LD	HL,(_squareSize)
+	LD	BC,HL
+	ADD	HL,HL
+	ADD	HL,BC
+	LD	BC,HL
+	LD	HL,(IX+-30)
+	LD	HL,(HL)
+	LD	IY,(IX+-30)
+	OR	A,A
+	SBC	HL,BC
+	LD	(IY),HL
+;  197	                    // yPos++;
+;  198	                    break;
+	JR	L_48
+;  199	                case 3: // Left
 L_46:
-;  194	
-;  195	
-;  196	
-;  197	
-;  198	
-;  199	        gfx_SwapDraw();
+;  200	                    segments[0][noSegments - 1] += squareSize * 3;
+	LD	HL,3
+	LD	BC,(IX+-3)
+	CALL	__imulu
+	LD	BC,(IX+-9)
+	ADD	HL,BC
+	LD	(IX+-33),HL
+	LD	DE,(HL)
+	LD	HL,(_squareSize)
+	LD	BC,HL
+	ADD	HL,HL
+	ADD	HL,BC
+	ADD	HL,DE
+	LD	IY,(IX+-33)
+	LD	(IY),HL
+;  201	                    // xPos--;
+;  202	                    break;
+;  203	                default:
+;  204	                    break;
+;  205	                }
+L_48:
+;  206	                generateFruit();
+	CALL	_generateFruit
+;  207	            }
+;  208	        }
+L_53:
+;  209	
+;  210	
+;  211	
+;  212	
+;  213	
+;  214	        gfx_SwapDraw();
 	CALL	_gfx_SwapDraw
-;  200	        boot_WaitShort();
+;  215	        boot_WaitShort();
 	CALL	_boot_WaitShort
-;  201	
-;  202	    } while (kb_Data[1] != kb_2nd);
+;  216	        boot_WaitShort();
+	CALL	_boot_WaitShort
+;  217	        boot_WaitShort();
+	CALL	_boot_WaitShort
+;  218	        
+;  219	
+;  220	    } while (kb_Data[1] != kb_2nd && hasLost == 0);
 	LD	A,(16056338)
 	CP	A,32
-	JR	NZ,L_47
-;  203	    gfx_End();
+	JR	Z,L_57
+	LD	A,(_hasLost)
+	OR	A,A
+	JR	Z,L_55
+L_57:
+;  221	    gfx_End();
 	CALL	_gfx_End
-;  204	}
+;  222	}
 	LD	SP,IX
 	POP	IX
 	RET	
@@ -1023,19 +1927,22 @@ L_46:
 ;_gfx_SwapDraw                       IMPORT  -----   function
 ;_maxSegments                        STATIC      3   variable
 ;_abs                                IMPORT  -----   function
+;_hasLost                            STATIC      1   variable
 ;_shiftSegments                      IMPORT  -----   function
 ;_xPos                               STATIC      3   variable
+;_speed                              STATIC      3   variable
 ;_yPos                               STATIC      3   variable
 ;_key                                STATIC      1   variable
 ;_fruitX                             STATIC      3   variable
 ;_fruitY                             STATIC      3   variable
 ;_gfx_FillCircle                     IMPORT  -----   function
 ;_noSegments                         STATIC      3   variable
-;_segments                           STATIC    600   variable
+;_segments                           STATIC   1800   variable
 ;_squareSize                         STATIC      3   variable
 ;_gfx_FillRectangle                  IMPORT  -----   function
 ;_i                                  STATIC      3   variable
 ;_gfx_FillScreen                     IMPORT  -----   function
+;_frames                             STATIC      4   variable
 ;_kb_Scan                            IMPORT  -----   function
 ;_generateFruit                      IMPORT  -----   function
 ;_gfx_SetTextFGColor                 IMPORT  -----   function
@@ -1043,33 +1950,35 @@ L_46:
 ;_gfx_SetDraw                        IMPORT  -----   function
 ;_gfx_Begin                          IMPORT  -----   function
 ;_currentDir                         STATIC      3   variable
-;G_3                                   IX-6      3   variable
-;G_1                                   IX-3      3   variable
+;G_0                                  IX-12      3   variable
+;G_1                                   IX-9      3   variable
+;G_4                                   IX-6      3   variable
+;G_5                                   IX-3      3   variable
 
 
-; Stack Frame Size: 24 (bytes)
+; Stack Frame Size: 45 (bytes)
 ;       Spill Code: 0 (instruction)
 
 
-;  205	
-;  206	void generateFruit(void) {
+;  223	
+;  224	void generateFruit(void) {
 _generateFruit:
-;  207	    srand(rtc_Time());
+;  225	    srand(rtc_Time());
 	LD	BC,(15925316)
 	PUSH	BC
 	CALL	_srand
 	POP	BC
-;  208	    fruitX = rand() % (SCREEN_MAX_X);
+;  226	    fruitX = rand() % (SCREEN_MAX_X);
 	CALL	_rand
 	LD	BC,320
 	CALL	__irems
 	LD	(_fruitX),HL
-;  209	    fruitY = rand() % (SCREEN_MAX_Y);
+;  227	    fruitY = rand() % (SCREEN_MAX_Y);
 	CALL	_rand
 	LD	BC,240
 	CALL	__irems
 	LD	(_fruitY),HL
-;  210	}
+;  228	}
 	RET	
 
 
@@ -1085,17 +1994,17 @@ _generateFruit:
 ;       Spill Code: 0 (instruction)
 
 
-;  211	
-;  212	void shiftSegments(void) {
+;  229	
+;  230	void shiftSegments(void) {
 _shiftSegments:
 	LD	HL,-39
 	CALL	__frameset
-;  213	    for (i = noSegments; i > 0; i--) {
+;  231	    for (i = noSegments; i > 0; i--) {
 	LD	BC,(_noSegments)
 	LD	(_i),BC
-	JR	L_55
-L_53:
-;  214	        segments[0][i] = segments[0][i - 1];
+	JR	L_63
+L_61:
+;  232	        segments[0][i] = segments[0][i - 1];
 	LD	BC,_segments
 	LD	(IX+-6),BC
 	LD	DE,(_i)
@@ -1140,10 +2049,10 @@ L_53:
 	LD	BC,(IX+-33)	; unspill
 	LD	(HL),BC
 	LD	BC,(IX+-30)	; unspill
-;  215	        segments[1][i] = segments[1][i - 1];
+;  233	        segments[1][i] = segments[1][i - 1];
 	LD	HL,_segments
 	LD	(IX+-36),BC	; spill
-	LD	BC,300
+	LD	BC,900
 	LD	(IX+-39),BC	; spill
 	LD	BC,(IX+-36)	; unspill
 	LD	(IX+-36),BC	; spill
@@ -1159,18 +2068,17 @@ L_53:
 	LD	BC,(IY)
 	LD	(HL),BC
 	LD	(_i),DE
-;  216	    }
-L_55:
+;  234	    }
+L_63:
 	LD	BC,(_i)
 	OR	A,A
 	SBC	HL,HL
 	OR	A,A
 	SBC	HL,BC
-	CALL	__setflag
-	JP	M,L_53
-;  217	    // segments[0][0] = xPos;
-;  218	    // segments[1][0] = yPos;
-;  219	}
+	JP	M,L_61
+;  235	    // segments[0][0] = xPos;
+;  236	    // segments[1][0] = yPos;
+;  237	}
 	LD	SP,IX
 	POP	IX
 	RET	
@@ -1178,7 +2086,7 @@ L_55:
 
 ;**************************** _shiftSegments ***************************
 ;Name                         Addr/Register   Size   Type
-;_segments                           STATIC    600   variable
+;_segments                           STATIC   1800   variable
 ;_i                                  STATIC      3   variable
 ;_noSegments                         STATIC      3   variable
 
@@ -1209,11 +2117,13 @@ L_55:
 	XREF __icmpzero:ROM
 	XREF __case8:ROM
 	XREF __seqcase:ROM
-	XREF __imul_b:ROM
+	XREF __ladd_b:ROM
 	XDEF _shiftSegments
 	XDEF _generateFruit
 	XDEF _main
 	XDEF _currentDir
+	XDEF _frames
+	XDEF _hasLost
 	XDEF _i
 	XDEF _debugBuffer
 	XDEF _maxSegments
@@ -1222,6 +2132,7 @@ L_55:
 	XDEF _fruitY
 	XDEF _fruitX
 	XDEF _key
+	XDEF _speed
 	XDEF _squareSize
 	XDEF _yPos
 	XDEF _xPos

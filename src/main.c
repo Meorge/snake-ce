@@ -34,17 +34,22 @@ void shiftSegments(void);
 int xPos = 100;
 int yPos = 100;
 int squareSize = 10;
+int speed = 6;
 kb_key_t key;
 
 int fruitX = 0;
 int fruitY = 0;
 
-int segments[2][100] = 0;
+int segments[2][300] = 0;
 unsigned int noSegments = 1;
-unsigned int maxSegments = 100;
+unsigned int maxSegments = 300;
 char debugBuffer[20];
 
 int i = 0; // for iterations
+
+unsigned char hasLost = 0;
+
+unsigned long int frames = 0;
 
 enum Direction {
     Up = 0,
@@ -68,12 +73,15 @@ void main(void) {
 
     generateFruit();
 
+
+
+
     
     kb_Scan();
 
     do {
-        
-        gfx_FillScreen(gfx_red);
+        frames++;
+        gfx_FillScreen(gfx_black);
         // gfx_SetTextFGColor(gfx_white);
 
         // sprintf(debugBuffer, "%d segments", noSegments);
@@ -93,7 +101,8 @@ void main(void) {
         // }
 
         for (i = 0; i < noSegments; i++) {
-            gfx_SetColor(i * 5);
+            //gfx_SetColor(i * 5);
+            // gfx_SetColor(gfx_white);
             gfx_FillRectangle(segments[0][i], segments[1][i], squareSize, squareSize);   
         }
 
@@ -126,16 +135,16 @@ void main(void) {
         switch ((int)currentDir)
         {
         case 0: // up
-            yPos-= 2;
+            yPos-= speed;
             break;
         case 1: // Right
-            xPos+= 2;
+            xPos+= speed;
             break;
         case 2: // Down
-            yPos+= 2;
+            yPos+= speed;
             break;
         case 3: // Left
-            xPos-= 2;
+            xPos-= speed;
             break;
         default:
             break;
@@ -152,37 +161,43 @@ void main(void) {
         } else if (xPos < 0) {
             xPos = SCREEN_MAX_X;
         }
+
         shiftSegments();
         segments[0][0] = xPos;
         segments[1][0] = yPos;
 
+        for (i = 1; i < noSegments; i++) {
+            if (segments[0][0] == segments[0][i] && segments[1][0] == segments[1][i]) {
+                hasLost = 1;
+                break;
+            }
+        }
+
         if (abs(segments[0][0] - fruitX) < 10 && abs(segments[1][0] - fruitY) < 10) {
-            noSegments++;
+            // speed++;
+            noSegments += 3;
             if (noSegments >= maxSegments) {
 
             } else {
                 shiftSegments();
-
+                segments[0][noSegments - 1] = segments[0][noSegments - 2];
+                segments[1][noSegments - 1] = segments[0][noSegments - 2];
                 switch ((int)currentDir)
                 {
                 case 0: // up
-                    yPos -= squareSize * 5;
-                    segments[1][0] -= squareSize * 5;
+                    segments[1][noSegments - 1] += squareSize * 3;
                     // yPos--;
                     break;
                 case 1: // Right
-                    xPos += squareSize * 5;
-                    segments[0][0] += squareSize * 5;
+                    segments[0][noSegments - 1] -= squareSize * 3;
                     // xPos++;
                     break;
                 case 2: // Down
-                    yPos += squareSize * 5;
-                    segments[1][0] += squareSize * 5;
+                    segments[1][noSegments - 1] -= squareSize * 3;
                     // yPos++;
                     break;
                 case 3: // Left
-                    xPos -= squareSize * 5;
-                    segments[0][0] -= squareSize * 5;
+                    segments[0][noSegments - 1] += squareSize * 3;
                     // xPos--;
                     break;
                 default:
@@ -199,8 +214,10 @@ void main(void) {
         gfx_SwapDraw();
         boot_WaitShort();
         boot_WaitShort();
+        boot_WaitShort();
+        
 
-    } while (kb_Data[1] != kb_2nd);
+    } while (kb_Data[1] != kb_2nd && hasLost == 0);
     gfx_End();
 }
 
