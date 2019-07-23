@@ -39,8 +39,9 @@ kb_key_t key;
 int fruitX = 0;
 int fruitY = 0;
 
-int segments[2][30] = 0;
+int segments[2][100] = 0;
 unsigned int noSegments = 1;
+unsigned int maxSegments = 100;
 char debugBuffer[20];
 
 int i = 0; // for iterations
@@ -125,16 +126,16 @@ void main(void) {
         switch ((int)currentDir)
         {
         case 0: // up
-            yPos--;
+            yPos-= 2;
             break;
         case 1: // Right
-            xPos++;
+            xPos+= 2;
             break;
         case 2: // Down
-            yPos++;
+            yPos+= 2;
             break;
         case 3: // Left
-            xPos--;
+            xPos-= 2;
             break;
         default:
             break;
@@ -151,39 +152,44 @@ void main(void) {
         } else if (xPos < 0) {
             xPos = SCREEN_MAX_X;
         }
-
+        shiftSegments();
         segments[0][0] = xPos;
         segments[1][0] = yPos;
 
         if (abs(segments[0][0] - fruitX) < 10 && abs(segments[1][0] - fruitY) < 10) {
             noSegments++;
-            shiftSegments();
+            if (noSegments >= maxSegments) {
 
-            segments[0][noSegments - 1] = rand() % SCREEN_MAX_X;
-            segments[1][noSegments - 1] = rand() % SCREEN_MAX_Y;
+            } else {
+                shiftSegments();
 
-            // switch ((int)currentDir)
-            // {
-            // case 0: // up
-            //     segments[1][noSegments] = rand() % ;
-            //     // yPos--;
-            //     break;
-            // case 1: // Right
-            //     segments[0][noSegments]++;
-            //     // xPos++;
-            //     break;
-            // case 2: // Down
-            //     segments[1][noSegments]++;
-            //     // yPos++;
-            //     break;
-            // case 3: // Left
-            //     segments[0][noSegments]--;
-            //     // xPos--;
-            //     break;
-            // default:
-            //     break;
-            // }
-            generateFruit();
+                switch ((int)currentDir)
+                {
+                case 0: // up
+                    yPos -= squareSize * 5;
+                    segments[1][0] -= squareSize * 5;
+                    // yPos--;
+                    break;
+                case 1: // Right
+                    xPos += squareSize * 5;
+                    segments[0][0] += squareSize * 5;
+                    // xPos++;
+                    break;
+                case 2: // Down
+                    yPos += squareSize * 5;
+                    segments[1][0] += squareSize * 5;
+                    // yPos++;
+                    break;
+                case 3: // Left
+                    xPos -= squareSize * 5;
+                    segments[0][0] -= squareSize * 5;
+                    // xPos--;
+                    break;
+                default:
+                    break;
+                }
+                generateFruit();
+            }
         }
 
 
@@ -192,6 +198,7 @@ void main(void) {
 
         gfx_SwapDraw();
         boot_WaitShort();
+        boot_WaitShort();
 
     } while (kb_Data[1] != kb_2nd);
     gfx_End();
@@ -199,17 +206,17 @@ void main(void) {
 
 void generateFruit(void) {
     srand(rtc_Time());
-    fruitX = rand() % SCREEN_MAX_X;
-    fruitY = rand() % SCREEN_MAX_Y;
+    fruitX = rand() % (SCREEN_MAX_X);
+    fruitY = rand() % (SCREEN_MAX_Y);
 }
 
 void shiftSegments(void) {
     for (i = noSegments; i > 0; i--) {
-        segments[0][i - 1] = segments[0][i];
-        segments[1][i - 1] = segments[1][i];
+        segments[0][i] = segments[0][i - 1];
+        segments[1][i] = segments[1][i - 1];
     }
-    segments[0][0] = xPos;
-    segments[1][0] = yPos;
+    // segments[0][0] = xPos;
+    // segments[1][0] = yPos;
 }
 
 /* Put other functions here */
