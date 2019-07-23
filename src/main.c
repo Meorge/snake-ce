@@ -43,11 +43,11 @@ int fruitY = 0;
 int segments[2][300] = 0;
 unsigned int noSegments = 1;
 unsigned int maxSegments = 300;
-char debugBuffer[20];
+char scoreBuf[20];
+char resBuf[20];
 
 int i = 0; // for iterations
 
-unsigned char hasLost = 0;
 
 unsigned long int frames = 0;
 
@@ -58,7 +58,18 @@ enum Direction {
     Left = 3
 };
 
+enum GameStatus {
+    Playing = 0,
+    Paused = 1,
+    Lost = 2
+};
+
+enum GameStatus currentGameStatus = Playing;
+
 enum Direction currentDir;
+
+int kb_Data1_last = 0;
+int kb_2nd_pressed = 0;
 
 void main(void) {
     currentDir = Right;
@@ -80,19 +91,44 @@ void main(void) {
     kb_Scan();
 
     do {
+        /* Update kb_Data */
+        kb_Scan();
+
         frames++;
         gfx_FillScreen(gfx_black);
-        // gfx_SetTextFGColor(gfx_white);
 
-        // sprintf(debugBuffer, "%d segments", noSegments);
-        // // debugBuffer[0] = 'A';
-        // // debugBuffer[1] = 'B';
-        // // debugBuffer[2] = 'C';
-        // /* Print some scaled font */
-        // gfx_SetTextScale(2, 2);
-        // //gfx_PrintStringXY("This text is SCALED!!", 15, 10);
-        // gfx_PrintStringXY("ahoy", (LCD_WIDTH - gfx_GetStringWidth("ahoy")) / 2, (LCD_HEIGHT - 8) / 2);
-        dbg_sprintf(dbgout, debugBuffer);
+        // if (kb_Data[1] == kb_Del) {
+        //     boot_TurnOff();
+        // }
+
+        //int kb_2nd_pressed = (kb_Data[1] == kb_2nd && kb_data1_last != kb_2nd);
+
+        if (kb_Data[1] == kb_2nd && currentGameStatus == Playing) {
+            currentGameStatus = Paused;
+            for (i = 0; i < 50; i++) {
+                boot_WaitShort();
+                boot_WaitShort();
+                boot_WaitShort();
+            }
+            
+        } else if (kb_Data[1] == kb_2nd && currentGameStatus == Paused) {
+            currentGameStatus = Playing;
+        }
+
+        if (currentGameStatus == Paused) {
+            gfx_SetTextFGColor(127);
+
+            sprintf(scoreBuf, "PAUSED - %d", noSegments);
+            gfx_PrintStringXY(scoreBuf, 0, 0);
+
+            gfx_SwapDraw();
+            kb_Data1_last = kb_Data[1];
+            boot_WaitShort();
+            boot_WaitShort();
+            boot_WaitShort();
+            continue;
+        }
+
         gfx_SetColor(gfx_white);
 
         // for (i = noSegments - 1; i >= 0; i--) {
@@ -109,8 +145,7 @@ void main(void) {
         gfx_SetColor(gfx_yellow);
         gfx_FillCircle(fruitX, fruitY, squareSize / 2);
 
-        /* Update kb_Data */
-        kb_Scan();
+
 
         /* Load group 7 registers */
         key = kb_Data[7];
@@ -168,7 +203,7 @@ void main(void) {
 
         for (i = 1; i < noSegments; i++) {
             if (segments[0][0] == segments[0][i] && segments[1][0] == segments[1][i]) {
-                hasLost = 1;
+                currentGameStatus = Lost;
                 break;
             }
         }
@@ -205,19 +240,40 @@ void main(void) {
                 }
                 generateFruit();
             }
+            
         }
 
 
 
+        gfx_SetTextFGColor(127);
 
+        sprintf(scoreBuf, "%d", noSegments);
+        gfx_PrintStringXY(scoreBuf, 0, 0);
 
         gfx_SwapDraw();
+
+        kb_Data1_last = kb_Data[1];
+
         boot_WaitShort();
         boot_WaitShort();
         boot_WaitShort();
         
 
-    } while (kb_Data[1] != kb_2nd && hasLost == 0);
+    } while (currentGameStatus != Lost);
+
+    gfx_FillScreen(gfx_black);
+    gfx_SetTextFGColor(gfx_yellow);
+
+    sprintf(resBuf, "Your Score Was %d", noSegments);
+    gfx_PrintStringXY(resBuf,(LCD_WIDTH - gfx_GetStringWidth(resBuf)) / 2, (LCD_HEIGHT - 8) / 2);
+    gfx_SwapDraw();
+    boot_WaitShort();
+    boot_WaitShort();
+    boot_WaitShort();
+    boot_WaitShort();
+    while (!os_GetCSC());
+    
+
     gfx_End();
 }
 
