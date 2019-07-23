@@ -1,0 +1,847 @@
+; Zilog eZ80 ANSI C Compiler Release 3.4
+; -optsize -noreduceopt -nomodsect -peephole -globalopt
+; -localcse -const=ROM 
+	FILE	"SRC\MAIN.C"
+	.assume ADL=1
+	SEGMENT DATA
+_xPos:
+	DW	100
+	DB	0
+_yPos:
+	DW	100
+	DB	0
+_squareSize:
+	DW	10
+	DB	0
+	SEGMENT BSS
+_key:
+	DS	1
+	SEGMENT DATA
+_fruitX:
+	DW	0
+	DB	0
+_fruitY:
+	DW	0
+	DB	0
+_segments:
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+	DW	0
+	DB	0
+_noSegments:
+	DW	1
+	DB	0
+	SEGMENT BSS
+_debugBuffer:
+	DS	20
+	SEGMENT DATA
+_i:
+	DW	0
+	DB	0
+	SEGMENT BSS
+_currentDir:
+	DS	3
+;    1	/*
+;    2	 *--------------------------------------
+;    3	 * Program Name: Snake for CE
+;    4	 * Author: Malcolm Anderson
+;    5	 * License: uuhhhhh idk
+;    6	 * Description: It's Snake. For the CE.
+;    7	 *--------------------------------------
+;    8	*/
+;    9	
+;   10	/* Keep these headers */
+;   11	#include <stdbool.h>
+;   12	#include <stddef.h>
+;   13	#include <stdint.h>
+;   14	#include <tice.h>
+;   15	
+;   16	/* Standard headers (recommended) */
+;   17	#include <math.h>
+;   18	#include <stdio.h>
+;   19	#include <stdlib.h>
+;   20	#include <string.h>
+;   21	
+;   22	#include <graphx.h>
+;   23	#include <debug.h>
+;   24	#include <keypadc.h>
+;   25	
+;   26	#define SCREEN_MAX_X 320
+;   27	#define SCREEN_MAX_Y 240
+;   28	
+;   29	/* Put your function prototypes here */
+;   30	void generateFruit(void);
+;   31	void shiftSegments(void);
+;   32	/* Put all your globals here */
+;   33	
+;   34	int xPos = 100;
+;   35	int yPos = 100;
+;   36	int squareSize = 10;
+;   37	kb_key_t key;
+;   38	
+;   39	int fruitX = 0;
+;   40	int fruitY = 0;
+;   41	
+;   42	int segments[2][30] = 0;
+;   43	unsigned int noSegments = 1;
+;   44	char debugBuffer[20];
+;   45	
+;   46	int i = 0; // for iterations
+;   47	
+;   48	enum Direction {
+;   49	    Up = 0,
+;   50	    Right = 1,
+;   51	    Down = 2,
+;   52	    Left = 3
+;   53	};
+;   54	
+;   55	enum Direction currentDir;
+	SEGMENT CODE
+;   56	
+;   57	void main(void) {
+_main:
+	LD	HL,-9
+	CALL	__frameset
+;   58	    currentDir = Right;
+	LD	BC,1
+	LD	(_currentDir),BC
+;   59	
+;   60	    
+;   61	    /* Fill in the body of the main function here */
+;   62	
+;   63	    gfx_Begin();
+	CALL	_gfx_Begin
+;   64	    gfx_SetDrawBuffer();
+	LD	BC,1
+	PUSH	BC
+	CALL	_gfx_SetDraw
+	POP	BC
+;   65	    gfx_SetColor(gfx_white);
+	LD	BC,255
+	PUSH	BC
+	CALL	_gfx_SetColor
+	POP	BC
+;   66	    gfx_SetTextFGColor(gfx_white);
+	LD	BC,255
+	PUSH	BC
+	CALL	_gfx_SetTextFGColor
+	POP	BC
+;   67	
+;   68	    generateFruit();
+	CALL	_generateFruit
+;   69	
+;   70	    
+;   71	    kb_Scan();
+	CALL	_kb_Scan
+;   72	
+;   73	    do {
+L_43:
+;   74	        
+;   75	        gfx_FillScreen(gfx_red);
+	LD	BC,224
+	PUSH	BC
+	CALL	_gfx_FillScreen
+	POP	BC
+;   76	        // gfx_SetTextFGColor(gfx_white);
+;   77	
+;   78	        // sprintf(debugBuffer, "%d segments", noSegments);
+;   79	        // // debugBuffer[0] = 'A';
+;   80	        // // debugBuffer[1] = 'B';
+;   81	        // // debugBuffer[2] = 'C';
+;   82	        // /* Print some scaled font */
+;   83	        // gfx_SetTextScale(2, 2);
+;   84	        // //gfx_PrintStringXY("This text is SCALED!!", 15, 10);
+;   85	        // gfx_PrintStringXY("ahoy", (LCD_WIDTH - gfx_GetStringWidth("ahoy")) / 2, (LCD_HEIGHT - 8) / 2);
+;   86	        dbg_sprintf(dbgout, debugBuffer);
+;   87	        gfx_SetColor(gfx_white);
+	LD	BC,255
+	PUSH	BC
+	CALL	_gfx_SetColor
+	POP	BC
+;   88	
+;   89	        // for (i = noSegments - 1; i >= 0; i--) {
+;   90	        //     gfx_SetColor(i);
+;   91	        //     gfx_FillRectangle(segments[0][i], segments[1][i], squareSize, squareSize);
+;   92	        // }
+;   93	
+;   94	        for (i = 0; i < noSegments; i++) {
+	LD	BC,0
+	LD	(_i),BC
+	JR	L_5
+L_3:
+;   95	            gfx_SetColor(i * 5);
+	LD	A,(_i)
+	LD	B,A
+	LD	C,5
+	MLT	BC
+	LD	B,0
+	PUSH	BC
+	CALL	_gfx_SetColor
+	POP	BC
+;   96	            gfx_FillRectangle(segments[0][i], segments[1][i], squareSize, squareSize);   
+	LD	HL,(_i)
+	LD	BC,HL
+	ADD	HL,HL
+	ADD	HL,BC
+	LD	BC,HL
+	LD	HL,_segments+90
+	LD	DE,BC
+	ADD	HL,DE
+	LD	DE,(HL)
+	LD	HL,(_squareSize)
+	PUSH	HL
+	LD	HL,BC
+	LD	BC,(_squareSize)
+	PUSH	BC
+	PUSH	DE
+	LD	BC,_segments
+	ADD	HL,BC
+	LD	BC,(HL)
+	PUSH	BC
+	CALL	_gfx_FillRectangle
+	POP	BC
+	POP	BC
+	POP	BC
+	POP	BC
+	LD	BC,(_i)
+	INC	BC
+	LD	(_i),BC
+;   97	        }
+L_5:
+	LD	BC,(_noSegments)
+	LD	HL,(_i)
+	OR	A,A
+	SBC	HL,BC
+	JR	C,L_3
+;   98	
+;   99	        gfx_SetColor(gfx_yellow);
+	LD	BC,231
+	PUSH	BC
+	CALL	_gfx_SetColor
+	POP	BC
+;  100	        gfx_FillCircle(fruitX, fruitY, squareSize / 2);
+	LD	HL,(_squareSize)
+	LD	BC,2
+	CALL	__idivs
+	PUSH	HL
+	LD	BC,(_fruitY)
+	PUSH	BC
+	LD	BC,(_fruitX)
+	PUSH	BC
+	CALL	_gfx_FillCircle
+	POP	BC
+	POP	BC
+	POP	BC
+;  101	
+;  102	        /* Update kb_Data */
+;  103	        kb_Scan();
+	CALL	_kb_Scan
+;  104	
+;  105	        /* Load group 7 registers */
+;  106	        key = kb_Data[7];
+	LD	A,(16056350)
+;  107	
+;  108	        switch (key) {
+	UEXT	HL
+	LD	L,A
+	LD	(_key),A
+	CALL	__case8
+L__1:
+	DW	4
+	DB	1
+	DW24	L_7	
+
+	DB	2
+	DW24	L_16	
+
+	DB	4
+	DW24	L_10	
+
+	DB	8
+	DW24	L_13	
+
+	DW24	L_29	
+
+;  109	            case kb_Down:
+L_7:
+;  110	                if (currentDir != Up) currentDir = Down;
+	LD	HL,(_currentDir)
+	CALL	__icmpzero
+	JR	Z,L_29
+	LD	BC,2
+	LD	(_currentDir),BC
+;  111	                break;
+	JR	L_29
+;  112	            case kb_Right:
+L_10:
+;  113	                if (currentDir != Left) currentDir = Right;
+	LD	BC,3
+	LD	HL,(_currentDir)
+	OR	A,A
+	SBC	HL,BC
+	JR	Z,L_29
+	LD	BC,1
+	LD	(_currentDir),BC
+;  114	                break;
+	JR	L_29
+;  115	            case kb_Up:
+L_13:
+;  116	                if (currentDir != Down) currentDir = Up;
+	LD	BC,2
+	LD	HL,(_currentDir)
+	OR	A,A
+	SBC	HL,BC
+	JR	Z,L_29
+	LD	BC,0
+	LD	(_currentDir),BC
+;  117	                break;
+	JR	L_29
+;  118	            case kb_Left:
+L_16:
+;  119	                if (currentDir != Right) currentDir = Left;
+	LD	BC,1
+	LD	HL,(_currentDir)
+	OR	A,A
+	SBC	HL,BC
+	JR	Z,L_29
+	LD	BC,3
+	LD	(_currentDir),BC
+;  120	                break;
+;  121	            default:
+;  122	                break;
+;  123	        }
+L_29:
+;  124	
+;  125	        switch ((int)currentDir)
+	LD	HL,(_currentDir)
+	CALL	__seqcase
+L__6:
+	DW	4
+	DW	0
+	DB	0
+	DW24	L_20	
+
+	DW24	L_22	
+
+	DW24	L_24	
+
+	DW24	L_26	
+
+	DW24	L_33	
+
+;  126	        {
+;  127	        case 0: // up
+L_20:
+;  128	            yPos--;
+	LD	BC,(_yPos)
+	DEC	BC
+	LD	(_yPos),BC
+;  129	            break;
+	JR	L_33
+;  130	        case 1: // Right
+L_22:
+;  131	            xPos++;
+	LD	BC,(_xPos)
+	INC	BC
+	LD	(_xPos),BC
+;  132	            break;
+	JR	L_33
+;  133	        case 2: // Down
+L_24:
+;  134	            yPos++;
+	LD	BC,(_yPos)
+	INC	BC
+	LD	(_yPos),BC
+;  135	            break;
+	JR	L_33
+;  136	        case 3: // Left
+L_26:
+;  137	            xPos--;
+	LD	BC,(_xPos)
+	DEC	BC
+	LD	(_xPos),BC
+;  138	            break;
+;  139	        default:
+;  140	            break;
+;  141	        }
+L_33:
+;  142	
+;  143	        if (yPos > SCREEN_MAX_Y) {
+	LD	BC,(_yPos)
+	LD	HL,240
+	OR	A,A
+	SBC	HL,BC
+	CALL	__setflag
+	JP	P,L_32
+;  144	            yPos = 0;
+	LD	BC,0
+	LD	(_yPos),BC
+;  145	        } else if (yPos < 0) {
+	JR	L_37
+L_32:
+	LD	HL,(_yPos)
+	CALL	__icmpzero
+	CALL	__setflag
+	JP	P,L_37
+;  146	            yPos = SCREEN_MAX_Y;
+	LD	BC,240
+	LD	(_yPos),BC
+;  147	        }
+L_37:
+;  148	
+;  149	        if (xPos > SCREEN_MAX_X) {
+	LD	BC,(_xPos)
+	LD	HL,320
+	OR	A,A
+	SBC	HL,BC
+	CALL	__setflag
+	JP	P,L_36
+;  150	            xPos = 0;
+	LD	BC,0
+	LD	(_xPos),BC
+;  151	        } else if (xPos < 0) {
+	JR	L_38
+L_36:
+	LD	HL,(_xPos)
+	CALL	__icmpzero
+	CALL	__setflag
+	JP	P,L_38
+;  152	            xPos = SCREEN_MAX_X;
+	LD	BC,320
+	LD	(_xPos),BC
+;  153	        }
+L_38:
+;  154	
+;  155	        segments[0][0] = xPos;
+	LD	BC,(_xPos)
+;  156	        segments[1][0] = yPos;
+	LD	IY,_segments
+	LEA	DE,IY+90
+	LD	(_segments),BC
+	LD	(IX+-3),DE
+	LEA	HL,IY+90
+	LD	BC,(_yPos)
+	LD	(HL),BC
+;  157	
+;  158	        if (abs(segments[0][0] - fruitX) < 10 && abs(segments[1][0] - fruitY) < 10) {
+	LD	HL,(_segments)
+	LD	BC,(_fruitX)
+	OR	A,A
+	SBC	HL,BC
+	PUSH	HL
+	CALL	_abs
+	POP	BC
+	LD	BC,10
+	OR	A,A
+	SBC	HL,BC
+	CALL	__setflag
+	JP	P,L_42
+	LD	HL,_segments+90
+	LD	HL,(HL)
+	LD	BC,(_fruitY)
+	OR	A,A
+	SBC	HL,BC
+	PUSH	HL
+	CALL	_abs
+	POP	BC
+	LD	BC,10
+	OR	A,A
+	SBC	HL,BC
+	CALL	__setflag
+	JP	P,L_42
+;  159	            noSegments++;
+	LD	BC,(_noSegments)
+	INC	BC
+	LD	(_noSegments),BC
+;  160	            shiftSegments();
+	CALL	_shiftSegments
+;  161	
+;  162	            segments[0][noSegments - 1] = rand() % SCREEN_MAX_X;
+	CALL	_rand
+	LD	IY,(_noSegments)
+	LD	BC,320
+	CALL	__irems
+	LD	DE,HL
+	LEA	HL,IY+-1
+	LD	BC,HL
+	ADD	HL,HL
+	ADD	HL,BC
+	LD	BC,_segments
+	ADD	HL,BC
+	LD	(HL),DE
+;  163	            segments[1][noSegments - 1] = rand() % SCREEN_MAX_Y;
+	CALL	_rand
+	LD	BC,240
+	LD	(IX+-6),BC	; spill
+	LD	BC,_segments+90
+	LD	(IX+-9),BC	; spill
+	LD	BC,(IX+-6)	; unspill
+	CALL	__irems
+	LD	DE,HL
+	LD	IY,(_noSegments)
+	LEA	HL,IY+-1
+	LD	BC,HL
+	ADD	HL,HL
+	ADD	HL,BC
+	LD	BC,(IX+-9)	; unspill
+	ADD	HL,BC
+	LD	(HL),DE
+;  164	
+;  165	            // switch ((int)currentDir)
+;  166	            // {
+;  167	            // case 0: // up
+;  168	            //     segments[1][noSegments] = rand() % ;
+;  169	            //     // yPos--;
+;  170	            //     break;
+;  171	            // case 1: // Right
+;  172	            //     segments[0][noSegments]++;
+;  173	            //     // xPos++;
+;  174	            //     break;
+;  175	            // case 2: // Down
+;  176	            //     segments[1][noSegments]++;
+;  177	            //     // yPos++;
+;  178	            //     break;
+;  179	            // case 3: // Left
+;  180	            //     segments[0][noSegments]--;
+;  181	            //     // xPos--;
+;  182	            //     break;
+;  183	            // default:
+;  184	            //     break;
+;  185	            // }
+;  186	            generateFruit();
+	CALL	_generateFruit
+;  187	        }
+L_42:
+;  188	
+;  189	
+;  190	
+;  191	
+;  192	
+;  193	        gfx_SwapDraw();
+	CALL	_gfx_SwapDraw
+;  194	        boot_WaitShort();
+	CALL	_boot_WaitShort
+;  195	
+;  196	    } while (kb_Data[1] != kb_2nd);
+	LD	A,(16056338)
+	CP	A,32
+	JR	NZ,L_43
+;  197	    gfx_End();
+	CALL	_gfx_End
+;  198	}
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** _main ***************************
+;Name                         Addr/Register   Size   Type
+;_gfx_End                            IMPORT  -----   function
+;_boot_WaitShort                     IMPORT  -----   function
+;_gfx_SwapDraw                       IMPORT  -----   function
+;_rand                               IMPORT  -----   function
+;_shiftSegments                      IMPORT  -----   function
+;_abs                                IMPORT  -----   function
+;_xPos                               STATIC      3   variable
+;_yPos                               STATIC      3   variable
+;_key                                STATIC      1   variable
+;_fruitX                             STATIC      3   variable
+;_fruitY                             STATIC      3   variable
+;_gfx_FillCircle                     IMPORT  -----   function
+;_noSegments                         STATIC      3   variable
+;_segments                           STATIC    180   variable
+;_squareSize                         STATIC      3   variable
+;_gfx_FillRectangle                  IMPORT  -----   function
+;_i                                  STATIC      3   variable
+;_gfx_FillScreen                     IMPORT  -----   function
+;_kb_Scan                            IMPORT  -----   function
+;_generateFruit                      IMPORT  -----   function
+;_gfx_SetTextFGColor                 IMPORT  -----   function
+;_gfx_SetColor                       IMPORT  -----   function
+;_gfx_SetDraw                        IMPORT  -----   function
+;_gfx_Begin                          IMPORT  -----   function
+;_currentDir                         STATIC      3   variable
+;G_1                                   IX-3      3   variable
+
+
+; Stack Frame Size: 15 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+;  199	
+;  200	void generateFruit(void) {
+_generateFruit:
+;  201	    srand(rtc_Time());
+	LD	BC,(15925316)
+	PUSH	BC
+	CALL	_srand
+	POP	BC
+;  202	    fruitX = rand() % SCREEN_MAX_X;
+	CALL	_rand
+	LD	BC,320
+	CALL	__irems
+	LD	(_fruitX),HL
+;  203	    fruitY = rand() % SCREEN_MAX_Y;
+	CALL	_rand
+	LD	BC,240
+	CALL	__irems
+	LD	(_fruitY),HL
+;  204	}
+	RET	
+
+
+;**************************** _generateFruit ***************************
+;Name                         Addr/Register   Size   Type
+;_fruitY                             STATIC      3   variable
+;_fruitX                             STATIC      3   variable
+;_rand                               IMPORT  -----   function
+;_srand                              IMPORT  -----   function
+
+
+; Stack Frame Size: 6 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+;  205	
+;  206	void shiftSegments(void) {
+_shiftSegments:
+	LD	HL,-39
+	CALL	__frameset
+;  207	    for (i = noSegments; i > 0; i--) {
+	LD	BC,(_noSegments)
+	LD	(_i),BC
+	JR	L_51
+L_49:
+;  208	        segments[0][i - 1] = segments[0][i];
+	LD	BC,_segments
+	LD	(IX+-6),BC
+	LD	HL,(_i)
+	LD	BC,HL
+	ADD	HL,HL
+	ADD	HL,BC
+	LD	DE,(_i)
+	DEC	DE
+	LD	(IX+-12),HL	; spill
+	LD	HL,3
+	LD	BC,DE
+	CALL	__imulu
+	LD	(IX+-15),HL
+	LD	HL,(IX+-6)
+	LD	BC,(IX+-12)	; unspill
+	ADD	HL,BC
+	LD	IY,HL
+	LD	HL,(IX+-6)
+	LD	(IX+-18),BC	; spill
+	LD	BC,(IX+-15)
+	LD	(IX+-21),BC	; spill
+	ADD	HL,BC
+;  209	        segments[1][i - 1] = segments[1][i];
+	LD	(IX+-24),BC	; spill
+	LD	BC,(IX+-15)
+	LD	(IX+-27),BC	; spill
+	LD	BC,(IX+-24)	; unspill
+	LD	(IX+-30),BC	; spill
+	LD	BC,(IY)
+	LD	(IX+-33),BC	; spill
+	LD	(HL),BC
+	LD	HL,_segments+90
+	LD	(IX+-3),HL
+	LD	BC,(IX+-12)	; unspill
+	ADD	HL,BC
+	LD	(IX+-36),BC	; spill
+	LD	BC,(HL)
+	LD	(IX+-39),BC	; spill
+	LD	HL,(IX+-3)
+	LD	BC,(IX+-27)	; unspill
+	ADD	HL,BC
+	LD	BC,(IX+-39)	; unspill
+	LD	(HL),BC
+	LD	(_i),DE
+;  210	    }
+L_51:
+	LD	BC,(_i)
+	OR	A,A
+	SBC	HL,HL
+	OR	A,A
+	SBC	HL,BC
+	CALL	__setflag
+	JP	M,L_49
+;  211	    segments[0][0] = xPos;
+	LD	BC,(_xPos)
+	LD	(_segments),BC
+;  212	    segments[1][0] = yPos;
+	LD	HL,_segments+90
+	LD	BC,(_yPos)
+	LD	(HL),BC
+;  213	}
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** _shiftSegments ***************************
+;Name                         Addr/Register   Size   Type
+;_yPos                               STATIC      3   variable
+;_xPos                               STATIC      3   variable
+;_segments                           STATIC    180   variable
+;_i                                  STATIC      3   variable
+;_noSegments                         STATIC      3   variable
+
+
+; Stack Frame Size: 45 (bytes)
+;       Spill Code: -5 (instruction)
+
+
+	XREF _kb_Scan:ROM
+	XREF _gfx_SetTextFGColor:ROM
+	XREF _gfx_SwapDraw:ROM
+	XREF _gfx_SetDraw:ROM
+	XREF _gfx_FillCircle:ROM
+	XREF _gfx_FillRectangle:ROM
+	XREF _gfx_FillScreen:ROM
+	XREF _gfx_SetColor:ROM
+	XREF _gfx_End:ROM
+	XREF _gfx_Begin:ROM
+	XREF _abs:ROM
+	XREF _rand:ROM
+	XREF _srand:ROM
+	XREF _boot_WaitShort:ROM
+	XREF __idivs:ROM
+	XREF __imulu:ROM
+	XREF __irems:ROM
+	XREF __frameset:ROM
+	XREF __setflag:ROM
+	XREF __icmpzero:ROM
+	XREF __case8:ROM
+	XREF __seqcase:ROM
+	XDEF _shiftSegments
+	XDEF _generateFruit
+	XDEF _main
+	XDEF _currentDir
+	XDEF _i
+	XDEF _debugBuffer
+	XDEF _noSegments
+	XDEF _segments
+	XDEF _fruitY
+	XDEF _fruitX
+	XDEF _key
+	XDEF _squareSize
+	XDEF _yPos
+	XDEF _xPos
+	END
