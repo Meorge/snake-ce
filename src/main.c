@@ -28,6 +28,7 @@
 
 /* Put your function prototypes here */
 void generateFruit(void);
+void drawGame(void);
 void shiftSegments(void);
 /* Put all your globals here */
 
@@ -40,9 +41,9 @@ kb_key_t key;
 int fruitX = 0;
 int fruitY = 0;
 
-int segments[2][300] = 0;
+int segments[2][500] = 0;
 unsigned int noSegments = 1;
-unsigned int maxSegments = 300;
+unsigned int maxSegments = 500;
 char scoreBuf[20];
 char resBuf[20];
 
@@ -68,8 +69,7 @@ enum GameStatus currentGameStatus = Playing;
 
 enum Direction currentDir;
 
-int kb_Data1_last = 0;
-int kb_2nd_pressed = 0;
+int buttonBuf = 0;
 
 void main(void) {
     currentDir = Right;
@@ -97,22 +97,25 @@ void main(void) {
         frames++;
         gfx_FillScreen(gfx_black);
 
-        // if (kb_Data[1] == kb_Del) {
-        //     boot_TurnOff();
-        // }
+        if (kb_Data[1] == kb_Del) {
+            currentGameStatus = Lost;
+        }
 
-        //int kb_2nd_pressed = (kb_Data[1] == kb_2nd && kb_data1_last != kb_2nd);
-
-        if (kb_Data[1] == kb_2nd && currentGameStatus == Playing) {
+        if (kb_Data[1] == kb_2nd && currentGameStatus == Playing && buttonBuf == 0) {
             currentGameStatus = Paused;
             for (i = 0; i < 50; i++) {
                 boot_WaitShort();
-                boot_WaitShort();
-                boot_WaitShort();
             }
+
+            buttonBuf = 40;
             
-        } else if (kb_Data[1] == kb_2nd && currentGameStatus == Paused) {
+        } else if (kb_Data[1] == kb_2nd && currentGameStatus == Paused && buttonBuf == 0) {
             currentGameStatus = Playing;
+            buttonBuf = 40;
+        }
+
+        if (buttonBuf - 1 >= 0) {
+            buttonBuf--;
         }
 
         if (currentGameStatus == Paused) {
@@ -121,29 +124,16 @@ void main(void) {
             sprintf(scoreBuf, "PAUSED - %d", noSegments);
             gfx_PrintStringXY(scoreBuf, 0, 0);
 
+            drawGame();
             gfx_SwapDraw();
-            kb_Data1_last = kb_Data[1];
             boot_WaitShort();
             boot_WaitShort();
             boot_WaitShort();
+ 
             continue;
         }
 
-        gfx_SetColor(gfx_white);
-
-        // for (i = noSegments - 1; i >= 0; i--) {
-        //     gfx_SetColor(i);
-        //     gfx_FillRectangle(segments[0][i], segments[1][i], squareSize, squareSize);
-        // }
-
-        for (i = 0; i < noSegments; i++) {
-            //gfx_SetColor(i * 5);
-            // gfx_SetColor(gfx_white);
-            gfx_FillRectangle(segments[0][i], segments[1][i], squareSize, squareSize);   
-        }
-
-        gfx_SetColor(gfx_yellow);
-        gfx_FillCircle(fruitX, fruitY, squareSize / 2);
+        drawGame();
 
 
 
@@ -252,7 +242,6 @@ void main(void) {
 
         gfx_SwapDraw();
 
-        kb_Data1_last = kb_Data[1];
 
         boot_WaitShort();
         boot_WaitShort();
@@ -275,6 +264,17 @@ void main(void) {
     
 
     gfx_End();
+}
+
+void drawGame(void) {
+    gfx_SetColor(gfx_white);
+
+    for (i = 0; i < noSegments; i++) {
+        gfx_FillRectangle(segments[0][i], segments[1][i], squareSize, squareSize);   
+    }
+
+    gfx_SetColor(gfx_yellow);
+    gfx_FillCircle(fruitX, fruitY, squareSize / 2);
 }
 
 void generateFruit(void) {
